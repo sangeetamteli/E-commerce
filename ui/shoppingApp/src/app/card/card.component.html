@@ -1,0 +1,11 @@
+<div class="card h-100 shadow-sm rounded-4 hover-card" (click)="viewDetailsEvent(product.productId!)">
+    <img class="card-img-top myimg" [src]="product.imageUrl || 'assets/images/default-product.png'"
+        [alt]="product.title">
+
+    <div class="card-body d-flex flex-column">
+        <h5 class="card-title text-teal fw-bold">{{ product.title }}</h5>
+        <p class="card-text flex-grow-1 text-muted">{{ product.description }}</p>
+        <p class="card-text fw-bold fs-5 text-success">₹{{ product.price }}</p>
+        <button class="btn btn-teal w-100 mb-2" (click)="onAddToCart($event)">Add to Cart</button>
+    </div>
+</div>

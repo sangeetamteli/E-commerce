@@ -1,0 +1,80 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.text-teal {
+    color: #20c997 !important;
+}
+
+.btn-teal {
+    background: linear-gradient(90deg, #0d6b63, #20c997);
+    color: #fff;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn-teal:hover {
+    background: linear-gradient(90deg, #20c997, #0d6b63);
+    transform: translateY(-2px);
+}
+
+.btn-outline-teal {
+    border: 1px solid #0d6b63;
+    color: #0d6b63;
+    transition: all 0.2s;
+}
+
+.btn-outline-teal:hover {
+    background: #0d6b63;
+    color: #fff;
+    border-color: #0d6b63;
+}
+
+.product-card {
+    border-radius: 1rem;
+    background: #fff;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.myimg {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    background-color: #f8f8f8;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .myimg {
+    transform: scale(1.05);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card-title {
+    font-weight: 700;
+    color: #20c997;
+}
+
+.card-text {
+    color: #6c757d;
+}
+
+@media (max-width: 768px) {
+    .myimg {
+        height: 180px;
+    }
+}

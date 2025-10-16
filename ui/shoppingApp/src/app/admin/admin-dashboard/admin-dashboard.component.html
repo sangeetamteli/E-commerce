@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg shadow-sm" style="background: linear-gradient(90deg, #4b79a1, #283e51);">
+    <div class="container justify-content-center">
+        <a class="navbar-brand fw-bold fs-3 text-white text-center" style="letter-spacing: 1px;">
+            ByteBuy
+        </a>
+        <button class="btn btn-outline-light btn-sm position-absolute end-0 me-3" (click)="logout()">
+            Logout
+        </button>
+    </div>
+</nav>
+
+<div class="d-flex">
+    <nav class="sidebar bg-dark text-white">
+        <div class="p-3">
+            <h4 class="text-center pb-3 border-bottom border-secondary">⚙️ Admin Panel</h4>
+            <ul class="nav flex-column mt-3">
+                <li class="nav-item mb-2">
+                    <a class="nav-link text-white" routerLink="/admin/products">Manage Products</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link text-white" routerLink="/admin/users">Manage Users</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link text-white" routerLink="/admin/orders">View Orders</a>
+                </li>
+            </ul>
+
+            <div *ngIf="showOrderStats" class="mt-4">
+                <div class="card bg-primary text-white mb-2 p-2">Total Orders: {{ stats.total }}</div>
+                <div class="card bg-warning text-dark mb-2 p-2">Pending: {{ stats.pending }}</div>
+                <div class="card bg-info text-white mb-2 p-2">Shipped: {{ stats.shipped }}</div>
+                <div class="card bg-success text-white mb-2 p-2">Delivered: {{ stats.delivered }}</div>
+                <div class="card bg-danger text-white mb-2 p-2">Cancelled: {{ stats.cancelled }}</div>
+                <div class="card bg-secondary text-white mb-2 p-2">
+                    Total Revenue: ₹{{ stats.totalRevenue | number:'1.0-2' }}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content flex-grow-1 p-4">
+        <router-outlet></router-outlet>
+    </main>
+</div>

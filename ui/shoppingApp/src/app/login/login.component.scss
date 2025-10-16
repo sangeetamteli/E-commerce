@@ -1,0 +1,101 @@
+.login-bg {
+    background: linear-gradient(135deg, #e0f7ff, #f8e0ff);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.bytebuy-header {
+    margin-bottom: 2rem;
+}
+
+.bytebuy-logo {
+    font-family: 'Orbitron', 'Poppins', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #20c997, #5eead4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.bytebuy-logo .accent {
+    background: linear-gradient(90deg, #ff7eb9, #ff758c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bytebuy-logo:hover {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #14b8a6, #38b2ac);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.login-card {
+    background: #ffffff;
+    padding: 2rem 2.5rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.login-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.login-input {
+    border-radius: 50px;
+    border: 1.5px solid #ddd;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.login-input:focus {
+    border-color: #20c997;
+    box-shadow: 0 0 10px rgba(32, 201, 151, 0.3);
+    outline: none;
+}
+
+.text-danger {
+    font-size: 0.85rem;
+}
+
+.btn-gradient {
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    padding: 0.8rem;
+    border-radius: 50px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+    .login-card {
+        padding: 1.5rem 1.8rem;
+    }
+
+    .bytebuy-logo {
+        font-size: 2.2rem;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+}

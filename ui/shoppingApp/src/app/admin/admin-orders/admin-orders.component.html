@@ -1,0 +1,66 @@
+<div class="container mt-4">
+    <h3 class="fw-bold text-primary mb-4">📦 All Orders (Admin View)</h3>
+
+    <div *ngIf="loading" class="text-center my-5">
+        <div class="spinner-border text-primary" role="status"></div>
+        <p class="mt-2 text-muted">Fetching orders...</p>
+    </div>
+
+    <div *ngIf="error" class="alert alert-danger shadow-sm">{{ error }}</div>
+
+    <div *ngIf="!loading && orders.length > 0" class="table-responsive shadow-sm rounded-4">
+        <table class="table table-hover table-bordered align-middle mb-0 bg-white">
+            <thead class="table-dark">
+                <tr>
+                    <th>Order ID</th>
+                    <th>User ID</th>
+                    <th>Delivery Address</th>
+                    <th>Total (₹)</th>
+                    <th>Products</th>
+                    <th>Status</th>
+                    <th>Change Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of orders" class="order-row">
+                    <td class="fw-semibold">{{ order.orderId }}</td>
+                    <td>{{ order.userId }}</td>
+                    <td>{{ order.deliveryAddress }}</td>
+                    <td class="fw-bold text-success">{{ order.totalAmount }}</td>
+                    <td>
+                        <ul class="list-unstyled mb-0">
+                            <li *ngFor="let item of order.items">
+                                🛒 <span class="fw-semibold">{{ item.productName || ('Product ' + item.productId)
+                                    }}</span>
+                                (x{{ item.quantity }}) — ₹{{ item.totalPrice }}
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <span class="badge text-uppercase px-3 py-2" [ngClass]="{
+                            'bg-secondary': order.status?.toUpperCase() === 'PENDING',
+                            'bg-warning text-dark': order.status?.toUpperCase() === 'SHIPPED',
+                            'bg-success': order.status?.toUpperCase() === 'DELIVERED',
+                            'bg-danger': order.status?.toUpperCase() === 'CANCELLED'
+                        }">
+                            {{ order.status }}
+                        </span>
+                    </td>
+                    <td>
+                        <select class="form-select form-select-sm" [value]="order.status"
+                            (change)="order.orderId && onStatusChange($event, order.orderId)">
+                            <option value="PENDING">Pending</option>
+                            <option value="SHIPPED">Shipped</option>
+                            <option value="DELIVERED">Delivered</option>
+                            <option value="CANCELLED">Cancelled</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="!loading && orders.length === 0" class="alert alert-info text-center shadow-sm mt-4">
+        No orders found.
+    </div>
+</div>

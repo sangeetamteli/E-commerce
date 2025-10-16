@@ -1,0 +1,75 @@
+.container {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.product-card {
+    border-radius: 15px;
+    background: #ffffff;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.product-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 1rem;
+    background-color: #f8f8f8;
+    transition: transform 0.3s, filter 0.3s;
+}
+
+.product-image:hover {
+    transform: scale(1.05);
+    filter: brightness(1.05);
+}
+
+.product-title {
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.price {
+    color: #20c997;
+    font-weight: 700;
+}
+
+.action-btn {
+    font-size: 0.95rem;
+    padding: 10px 16px;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-teal {
+    background: linear-gradient(90deg, #0d6b63, #20c997);
+    color: #fff;
+    font-weight: 600;
+}
+
+.btn-teal:hover {
+    background: linear-gradient(90deg, #20c997, #0d6b63);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-outline-secondary.action-btn:hover {
+    background-color: #343a40;
+    color: #fff;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

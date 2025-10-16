@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg shadow-sm"
+    style="background: linear-gradient(90deg, #1e3c72, #2a5298); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <div class="container-fluid">
+
+        <a class="navbar-brand fw-bold fs-3 text-white" routerLink="/home" style="letter-spacing: 1px;">
+            ByteBuy
+        </a>
+
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link text-white fw-semibold" routerLink="/home" routerLinkActive="active"
+                        style="margin-right: 1rem;">
+                        Products
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white fw-semibold" routerLink="/order" routerLinkActive="active"
+                        style="margin-right: 1rem;">
+                        Orders
+                    </a>
+                </li>
+
+                <li class="nav-item position-relative">
+                    <a class="nav-link text-white fw-semibold" routerLink="/cart" style="margin-right: 1rem;">
+                        🛒 Cart
+                        <span class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill"
+                            *ngIf="cartCount > 0">{{ cartCount }}</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white fw-semibold" (click)="logout()" style="cursor: pointer;">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

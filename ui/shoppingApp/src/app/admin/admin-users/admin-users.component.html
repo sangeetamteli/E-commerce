@@ -1,0 +1,58 @@
+<div class="container mt-4">
+    <h3 class="fw-bold text-primary mb-3">👥 Users Management</h3>
+
+    <div class="table-responsive shadow-sm">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td *ngIf="editingUser?.id !== user.id">{{ user.name }}</td>
+                    <td *ngIf="editingUser?.id === user.id">
+                        <input [(ngModel)]="editingUser!.name" class="form-control form-control-sm" />
+                    </td>
+
+                    <td *ngIf="editingUser?.id !== user.id">{{ user.email }}</td>
+                    <td *ngIf="editingUser?.id === user.id">
+                        <input [(ngModel)]="editingUser!.email" class="form-control form-control-sm" />
+                    </td>
+
+                    <td *ngIf="editingUser?.id !== user.id">
+                        <span
+                            [ngClass]="{'text-success fw-bold': user.role === 'Admin', 'text-dark': user.role !== 'Admin'}">
+                            {{ user.role }}
+                        </span>
+                    </td>
+                    <td *ngIf="editingUser?.id === user.id">
+                        <select [(ngModel)]="editingUser!.role" class="form-select form-select-sm">
+                            <option>Customer</option>
+                            <option>Admin</option>
+                        </select>
+                    </td>
+
+                    <td class="text-center">
+                        <button *ngIf="editingUser?.id !== user.id" class="btn btn-sm btn-primary me-2"
+                            (click)="editUser(user)">Edit</button>
+                        <button *ngIf="editingUser?.id !== user.id" class="btn btn-sm btn-danger"
+                            (click)="deleteUser(user.id)">Delete</button>
+
+                        <button *ngIf="editingUser?.id === user.id" class="btn btn-sm btn-success me-2"
+                            (click)="saveUser()">Save</button>
+                        <button *ngIf="editingUser?.id === user.id" class="btn btn-sm btn-secondary"
+                            (click)="cancelEdit()">Cancel</button>
+                    </td>
+                </tr>
+
+                <tr *ngIf="users.length === 0">
+                    <td colspan="4" class="text-center text-muted py-4">No users found.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

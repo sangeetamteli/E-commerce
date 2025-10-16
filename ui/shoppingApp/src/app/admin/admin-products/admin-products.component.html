@@ -1,0 +1,134 @@
+<div *ngIf="notificationMessage" class="top-notification">
+    {{ notificationMessage }}
+</div>
+
+<div class="container mt-4">
+
+    <div *ngIf="showForm && editingProduct" class="card shadow p-4 mt-4">
+        <h3 class="mb-4 text-primary">{{ isEditMode ? 'Edit Product' : 'Add New Product' }}</h3>
+
+        <form (ngSubmit)="saveProduct(editingProduct!)" #productForm="ngForm">
+            <div class="row g-3">
+
+                <div class="col-12 text-center mb-3">
+                    <label class="form-label fw-semibold d-block">Product Image URL</label>
+
+                    <div *ngIf="editingProduct.imageUrl" class="mb-3">
+                        <img [src]="editingProduct.imageUrl" alt="Preview" class="img-fluid rounded shadow-sm border"
+                            style="max-height: 180px; object-fit: contain;" />
+                    </div>
+
+                    <input type="text" class="form-control text-center" [(ngModel)]="editingProduct.imageUrl"
+                        name="imageUrl" placeholder="https://example.com/image.jpg" required />
+                    <div *ngIf="productForm.submitted && !editingProduct.imageUrl" class="text-danger small mt-1">
+                        Image URL is required
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Title</label>
+                    <input type="text" class="form-control" [(ngModel)]="editingProduct.title" name="title" required />
+                    <div *ngIf="productForm.submitted && !editingProduct.title" class="text-danger small mt-1">
+                        Title is required
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Price (₹)</label>
+                    <input type="number" class="form-control" [(ngModel)]="editingProduct.price" name="price" required
+                        min="1" />
+                    <div *ngIf="productForm.submitted && (!editingProduct.price || editingProduct.price <= 0)"
+                        class="text-danger small mt-1">
+                        Price must be greater than 0
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Available Quantity</label>
+                    <input type="number" class="form-control" [(ngModel)]="editingProduct.availableQuantity"
+                        name="availableQuantity" required min="0" />
+                    <div *ngIf="productForm.submitted && editingProduct.availableQuantity == null"
+                        class="text-danger small mt-1">
+                        Quantity is required
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Category ID</label>
+                    <input type="number" class="form-control" [(ngModel)]="editingProduct.categoryId" name="categoryId"
+                        required />
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-control" rows="3" [(ngModel)]="editingProduct.description"
+                        name="description"></textarea>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2 mt-4">
+                <button type="submit" class="btn btn-primary">{{ isEditMode ? 'Update' : 'Add Product' }}</button>
+                <button type="button" class="btn btn-outline-secondary" (click)="cancelForm()">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <div *ngIf="!showForm" class="mt-4">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="fw-bold text-primary">📦 Product Management</h3>
+            <button class="btn btn-success" (click)="addProduct()">
+                <i class="bi bi-plus-circle me-1"></i> Add Product
+            </button>
+        </div>
+
+        <div class="table-responsive shadow-sm">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of products" [ngClass]="{
+                            'out-of-stock-row': product.availableQuantity === 0,
+                            'low-stock-row': product.availableQuantity > 0 && product.availableQuantity <= 5
+                        }" class="align-middle">
+                        <td>
+                            <img [src]="product.imageUrl" alt="Product Image" class="rounded shadow-sm"
+                                style="width: 60px; height: 60px; object-fit: contain;" />
+                        </td>
+                        <td>{{ product.title }}</td>
+                        <td>₹{{ product.price }}</td>
+                        <td>
+                            <span [ngClass]="{
+                                'text-success fw-bold': product.availableQuantity > 5,
+                                'text-warning fw-bold': product.availableQuantity > 0 && product.availableQuantity <= 5,
+                                'text-danger fw-bold': product.availableQuantity === 0
+                            }">{{ product.availableQuantity }}</span>
+                        </td>
+                        <td>{{ product.description }}</td>
+                        <td>{{ product.categoryId }}</td>
+                        <td class="text-center">
+                            <button class="btn btn-outline-primary btn-sm me-2" (click)="editProduct(product)">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm" (click)="deleteProduct(product.productId!)">
+                                <i class="bi bi-trash"></i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="products.length === 0">
+                        <td colspan="7" class="text-center text-muted py-4">No products found.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

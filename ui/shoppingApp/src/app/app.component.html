@@ -1,0 +1,18 @@
+<!-- Conditionally show navbar except on login and admin pages -->
+<app-navbar *ngIf="!isLoginPage && !isAdminPage"></app-navbar>
+
+<div aria-live="polite" aria-atomic="true" class="position-relative">
+    <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3"
+        style="z-index: 1200; margin-top: 20px;">
+        <ngb-toast *ngFor="let toast of toasts" (hidden)="remove(toast)" [autohide]="true" [delay]="toast.delay || 3000"
+            [class.bg-success]="toast.type === 'success'" [class.bg-danger]="toast.type === 'error'"
+            class="shadow-lg text-black fw-semibold">
+            <ng-template ngbToastHeader *ngIf="toast.header">
+                <strong class="me-auto">{{ toast.header }}</strong>
+            </ng-template>
+
+            {{ toast.message }}
+        </ngb-toast>
+    </div>
+</div>
+<router-outlet></router-outlet>

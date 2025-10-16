@@ -1,0 +1,88 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
+.notification-container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    margin-bottom: 1rem;
+}
+
+.alert {
+    border-radius: 10px;
+    font-size: 1.1rem;
+}
+
+.card {
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+textarea,
+input,
+select {
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+    border-color: #20c997;
+    box-shadow: 0 0 0 0.15rem rgba(32, 201, 151, 0.25);
+}
+
+h2 {
+    color: #20c997;
+}
+
+h4 {
+    font-weight: 600;
+    color: #495057;
+}
+
+.btn-teal {
+    background: linear-gradient(90deg, #0d6b63, #20c997);
+    color: #fff;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-teal:hover {
+    background: linear-gradient(90deg, #20c997, #0d6b63);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-outline-secondary {
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-secondary:hover {
+    background: #f8f9fa;
+}
+
+.table th,
+.table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #e0f7f3;
+}

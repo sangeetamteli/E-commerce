@@ -1,0 +1,88 @@
+.navbar {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    background-color: #fff !important;
+    padding: 0.7rem 1.2rem;
+    position: relative;
+    z-index: 1000;
+}
+
+.navbar .nav-link {
+    position: relative;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+    color: #20c997 !important;
+}
+
+.navbar .badge {
+    font-size: 0.75rem;
+    padding: 0.35em 0.6em;
+    border-radius: 50%;
+    background: #dc3545;
+    color: white;
+    position: absolute;
+    top: -6px;
+    right: -12px;
+}
+
+.navbar .btn-logout {
+    border: 2px solid #dc3545;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    color: #dc3545;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.navbar .btn-logout:hover {
+    background: #dc3545;
+    color: #fff;
+}
+
+.navbar-brand {
+    font-family: 'Orbitron', 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.2rem;
+    background: linear-gradient(90deg, #20c997, #5eead4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navbar-brand:hover {
+    background: linear-gradient(90deg, #38b2ac, #14b8a6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='black' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    filter: invert(0.6);
+}
+
+@media (max-width: 991px) {
+    .navbar-brand {
+        font-size: 1.8rem;
+    }
+
+    .navbar-nav .nav-link {
+        margin-right: 0 !important;
+        padding: 0.5rem 0;
+    }
+
+    .navbar .badge {
+        top: -4px;
+        right: -8px;
+    }
+}

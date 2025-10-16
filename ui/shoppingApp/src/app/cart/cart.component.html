@@ -1,0 +1,55 @@
+<div class="container mt-5 cart-container">
+    <h2 class="text-center text-teal mb-4 fw-bold">🛒 Your Cart</h2>
+
+
+    <div *ngIf="cartItems.length === 0" class="text-center empty-cart">
+        <p>Your cart is empty!</p>
+    </div>
+
+    <div *ngIf="cartItems.length > 0" class="card shadow-sm p-4 rounded-4">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle text-center mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of cartItems">
+                        <td class="fw-bold">{{ item.title }}</td>
+                        <td>₹{{ item.price }}</td>
+                        <td>
+                            <div class="quantity-control">
+                                <button (click)="decreaseQuantity(item)">−</button>
+                                <span>{{ item.quantity }}</span>
+                                <button (click)="increaseQuantity(item)">+</button>
+                            </div>
+                        </td>
+                        <td class="fw-bold">₹{{ item.subtotal }}</td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-danger" (click)="removeItem(item.productId)">
+                                <i class="bi bi-trash-fill"></i> Remove
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap">
+            <h5 class="fw-bold cart-summary">Total: ₹{{ totalPrice }}</h5>
+            <div class="d-flex gap-2 mt-2 mt-md-0 flex-wrap">
+                <button class="btn btn-outline-warning fw-semibold" (click)="clearCart()">
+                    <i class="bi bi-trash"></i> Clear Cart
+                </button>
+                <button class="btn btn-teal fw-semibold" (click)="placeOrder()">
+                    <i class="bi bi-bag-check-fill"></i> Place Order
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

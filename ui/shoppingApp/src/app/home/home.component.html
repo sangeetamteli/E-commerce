@@ -1,0 +1,87 @@
+<div class="container mt-5">
+    <div class="card p-3 mb-4 shadow-sm rounded-4 border-0">
+        <form class="row g-3 align-items-end">
+            <div class="col-md-3">
+                <label class="form-label fw-semibold text-teal">Search by Title</label>
+                <div class="input-group">
+                    <input type="text" class="form-control rounded" [(ngModel)]="searchTitle" name="searchTitle"
+                        placeholder="e.g. Smartphone">
+                    <button class="btn btn-outline-teal" type="button" (click)="applyFilter()">Search</button>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label fw-semibold text-teal">Category</label>
+                <select class="form-select rounded" [(ngModel)]="selectedCategory" name="category">
+                    <option [ngValue]="0">All Categories</option>
+                    <option *ngFor="let c of categories" [ngValue]="c.id">{{ c.name }}</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label fw-semibold text-teal">Min Price</label>
+                <input type="number" class="form-control rounded" [(ngModel)]="minPrice" name="minPrice">
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label fw-semibold text-teal">Max Price</label>
+                <input type="number" class="form-control rounded" [(ngModel)]="maxPrice" name="maxPrice">
+            </div>
+
+            <div class="col-md-3 d-flex gap-2">
+                <button type="button" class="btn btn-teal w-50" (click)="applyFilter()">Filter</button>
+                <button type="button" class="btn btn-outline-secondary w-50" (click)="resetFilters()">Reset</button>
+            </div>
+        </form>
+    </div>
+
+    <h2 class="mb-4 text-center fw-bold text-teal">Product List</h2>
+
+    <div class="row g-4">
+        <div *ngFor="let product of filteredProducts" class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm rounded-4 product-card" (click)="viewDetailsEvent(product.productId!)"
+                style="cursor: pointer; transition: 0.2s ease-in-out;">
+
+                <img [src]="product.imageUrl || 'assets/images/default-product.png'" alt="{{ product.title }}"
+                    class="card-img-top myimg">
+
+                <div class="card-body d-flex flex-column text-center">
+
+                    <h5 class="card-title fw-bold">{{ product.title }}</h5>
+                    <p class="card-text text-muted flex-grow-1">{{ product.description }}</p>
+                    <p class="fw-bold fs-5 text-success mb-2">₹{{ product.price }}</p>
+
+                    <div class="mb-2">
+                        <span *ngIf="product.availableQuantity === 0" class="badge bg-danger text-white fs-6 px-3 py-2">
+                            ❌ Out of Stock
+                        </span>
+
+                        <span *ngIf="product.availableQuantity > 0 && product.availableQuantity <= 5"
+                            class="badge bg-warning text-dark fs-6 px-3 py-2">
+                            ⚠️ Low Stock ({{ product.availableQuantity }} left)
+                        </span>
+                    </div>
+
+                    <div class="mt-auto d-grid gap-2">
+                        <button (click)="addToCart(product); $event.stopPropagation()" class="btn btn-teal btn-sm"
+                            [disabled]="product.availableQuantity === 0">
+                            {{ product.availableQuantity === 0 ? 'Unavailable' : 'Add to Cart' }}
+                        </button>
+
+                        <button *ngIf="product.productId !== undefined"
+                            (click)="viewDetailsEvent(product.productId!); $event.stopPropagation()"
+                            class="btn btn-outline-teal btn-sm w-100 mt-2">
+                            View Details
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- No Products Found -->
+    <div *ngIf="filteredProducts.length === 0" class="text-center mt-4">
+        <p class="text-muted fst-italic">No products found</p>
+    </div>
+</div>

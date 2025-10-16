@@ -1,0 +1,80 @@
+.cart-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 25px 20px;
+}
+
+.text-teal {
+    color: #0d6b63 !important;
+}
+
+.empty-cart {
+    padding: 60px 20px;
+    font-size: 1.2rem;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.quantity-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quantity-control button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e9f7f5;
+    border: 1px solid #20c997;
+    color: #0d6b63;
+    transition: all 0.2s ease;
+}
+
+.quantity-control button:hover {
+    background: #20c997;
+    color: #fff;
+    border-color: #20c997;
+}
+
+.quantity-control span {
+    min-width: 36px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.btn-teal {
+    background: linear-gradient(90deg, #0d6b63, #20c997);
+    color: #fff;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-teal:hover {
+    background: linear-gradient(90deg, #20c997, #0d6b63);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.table-hover tbody tr:hover {
+    background-color: #e0f7f3;
+    border-radius: 0.5rem;
+}
+
+.cart-summary {
+    font-size: 1.35rem;
+    color: #0d6b63;
+}
+
+@media (max-width: 768px) {
+    .quantity-control button {
+        width: 28px;
+        height: 28px;
+    }
+}

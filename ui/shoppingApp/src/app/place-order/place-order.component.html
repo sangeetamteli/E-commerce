@@ -1,0 +1,96 @@
+<div class="container mt-4">
+
+    <div class="notification-container" *ngIf="orderSuccess">
+        <div class="alert alert-success shadow-sm text-center">
+            🎉 Your order has been placed successfully! Total: ₹{{ placedOrderTotal }}
+        </div>
+    </div>
+
+    <h2 class="text-center mb-4 text-teal fw-bold">Place Your Order</h2>
+
+    <div *ngIf="cart.length > 0; else emptyCart">
+
+        <div class="card shadow-sm p-3 mb-4">
+            <h4 class="mb-3 text-muted">Order Summary</h4>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle text-center mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of cart">
+                            <td>{{ item.title }}</td>
+                            <td>₹{{ item.price }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>₹{{ item.subtotal }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="d-flex justify-content-end mt-3">
+                <h5 class="fw-bold text-teal">Total: ₹{{ totalPrice }}</h5>
+            </div>
+        </div>
+
+        <div class="card shadow-sm p-4 mb-4">
+            <h4 class="mb-3 text-muted">Contact Details</h4>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Full Name</label>
+                    <input type="text" [(ngModel)]="contactDetails.fullName" class="form-control"
+                        placeholder="Enter your name">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Phone Number</label>
+                    <input type="text" [(ngModel)]="contactDetails.phoneNumber" class="form-control"
+                        placeholder="Enter your phone number">
+                </div>
+                <div class="col-12">
+                    <label class="form-label fw-semibold">Email Address</label>
+                    <input type="email" [(ngModel)]="contactDetails.email" class="form-control"
+                        placeholder="Enter your email">
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm p-4 mb-4">
+            <h4 class="mb-3 text-muted">Delivery Details</h4>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Delivery Address</label>
+                <textarea [(ngModel)]="orderData.address" rows="3" class="form-control"
+                    placeholder="Enter your full address"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="paymentMethod" class="form-label fw-semibold">Payment Method</label>
+                <select id="paymentMethod" class="form-select" [(ngModel)]="orderData.paymentMethod">
+                    <option value="Cash on Delivery">Cash on Delivery</option>
+                    <option value="UPI">UPI</option>
+                    <option value="Credit Card">Credit/Debit Card</option>
+                </select>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2 mt-4 flex-wrap">
+                <button class="btn btn-outline-secondary" (click)="goBack()">Back to Cart</button>
+                <button class="btn btn-teal px-4" (click)="placeOrder()">Place Order</button>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #emptyCart>
+        <div class="text-center mt-5">
+            <h5 class="text-muted mb-3">Your cart is empty. Add items before placing an order.</h5>
+            <button class="btn btn-teal me-2" routerLink="/home">🛍️ Go Shopping</button>
+            <button class="btn btn-outline-secondary" routerLink="/order">View Orders</button>
+        </div>
+    </ng-template>
+</div>

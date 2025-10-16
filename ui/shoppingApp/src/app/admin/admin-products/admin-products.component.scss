@@ -1,0 +1,89 @@
+.top-notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1050;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: rgba(220, 245, 220, 0.95);
+    font-weight: 500;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+.card {
+    border-radius: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.table-hover tbody tr {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.table-hover tbody tr:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.btn-primary,
+.btn-success,
+.btn-outline-primary,
+.btn-outline-danger {
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+}
+
+.btn-outline-primary:hover {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+.text-primary {
+    color: #0d6efd !important;
+}
+
+.form-label {
+    font-weight: 500;
+}
+
+.out-of-stock-row {
+    border: 2px solid red !important;
+    background-color: rgba(255, 0, 0, 0.05);
+}
+
+.low-stock-row {
+    border: 2px solid orange !important;
+    background-color: rgba(255, 165, 0, 0.05);
+}
+
+.table td,
+.table th {
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .card-body {
+        gap: 0.5rem;
+    }
+}
